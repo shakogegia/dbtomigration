@@ -29,10 +29,10 @@ class GenerateMigrationFiles
     {
         $this->showInfo('Generating migrations...');
         
-        $this->fetchTables();
+        $this->fetchAllColumns();
     }
 
-    public function fetchTables()
+    /*public function fetchTables()
     {
         $tables = DB::select('SHOW TABLES');
         
@@ -43,7 +43,7 @@ class GenerateMigrationFiles
         }
 
         $this->fetchAllColumns();
-    }
+    }*/
 
 
     public function fetchAllColumns()
