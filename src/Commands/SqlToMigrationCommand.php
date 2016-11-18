@@ -13,14 +13,14 @@ class SqlToMigrationCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'asd:generate';
+    protected $signature = 'sqltomigration:generate';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Generate migration files from sql';
 
     /**
      * Create a new command instance.

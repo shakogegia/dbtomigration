@@ -14,5 +14,5 @@ Shakogegia\Laramigrations\LaramigrationsServiceProvider::class
 # Usage
 Run artisan command to generate migration files
 ```
-php artisan asd:generate
+php artisan sqltomigration:generate
 ```
