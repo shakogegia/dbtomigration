@@ -18,11 +18,6 @@ class DbtomigrationServiceProvider extends ServiceProvider
     public function boot()
     {
         // Publish a config file
-        // $this->publishes([
-
-        //     __DIR__.'/config/Dbtomigration.php' => config_path('Dbtomigration.php'),
-        // ]);
-        // 
     }
 
     /**

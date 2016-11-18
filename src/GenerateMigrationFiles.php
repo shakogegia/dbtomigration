@@ -9,7 +9,6 @@ use File;
 
 class GenerateMigrationFiles
 {
-	private $tables = [];
 	private $columns = [];
 
 	private $dbSchema = array();
@@ -31,20 +30,6 @@ class GenerateMigrationFiles
         
         $this->fetchAllColumns();
     }
-
-    /*public function fetchTables()
-    {
-        $tables = DB::select('SHOW TABLES');
-        
-        foreach ($tables as $table) {
-            foreach ($table as $key => $value){
-                $this->tables[] = $value;
-            }
-        }
-
-        $this->fetchAllColumns();
-    }*/
-
 
     public function fetchAllColumns()
     {
