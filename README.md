@@ -14,5 +14,5 @@ Shakogegia\Dbtomigration\DbtomigrationServiceProvider::class
 # Usage
 Run artisan command to generate migration files
 ```
-php artisan dbomigration:generate
+php artisan dbtomigration:generate
 ```
