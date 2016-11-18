@@ -1,6 +1,6 @@
 {
     "name": "shakogegia/dbtomigration",
-    "description": "Laravel 5.3 package to generate migration files from database",
+    "description": "Laravel 5 package to generate migration files from database",
     "authors": [
         {
             "name": "Shalva gegia",
