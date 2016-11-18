@@ -11,6 +11,6 @@
     "minimum-stability": "dev",
     "require": {},
     "autoload": {
-        "psr-4": { "Shakogegia\\Laramigrations": "src/" }
+        "psr-4": { "Shakogegia\\Laramigrations\\": "src/" }
     }
 }
