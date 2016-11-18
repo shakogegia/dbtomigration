@@ -1,0 +1,12 @@
+{
+    "name": "shakogegia/laramigrations",
+    "description": "sql to migrations",
+    "authors": [
+        {
+            "name": "Shalva gegia",
+            "email": "shalva.gegia@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
