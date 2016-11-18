@@ -1,5 +1,5 @@
 # laramigrations
-Laravel 5.3 package to convert database to laravel migartions
+Laravel 5 package to convert database to laravel migartions
 
 ## Install
 ```
