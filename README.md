@@ -1,4 +1,4 @@
-# DbToMigration
+# Dbtomigration
 Laravel 5 package to convert database to laravel migartions
 
 ## Install
