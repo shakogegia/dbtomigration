@@ -1,13 +1,13 @@
 <?php
 
-namespace Shakogegia\Laramigrations;
+namespace Shakogegia\Dbtomigration;
 
 use Illuminate\Support\ServiceProvider;
 
-class LaramigrationsServiceProvider extends ServiceProvider
+class DbtomigrationServiceProvider extends ServiceProvider
 {
     protected $commands = [
-        'Shakogegia\Laramigrations\Commands\SqlToMigrationCommand'
+        'Shakogegia\Dbtomigration\Commands\DbToMigrationCommand'
     ];
 
     /**
@@ -20,7 +20,7 @@ class LaramigrationsServiceProvider extends ServiceProvider
         // Publish a config file
         // $this->publishes([
 
-        //     __DIR__.'/config/laramigrations.php' => config_path('laramigrations.php'),
+        //     __DIR__.'/config/Dbtomigration.php' => config_path('Dbtomigration.php'),
         // ]);
         // 
     }

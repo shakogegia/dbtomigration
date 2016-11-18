@@ -1,6 +1,6 @@
 <?php
 
-namespace Shakogegia\Laramigrations;
+namespace Shakogegia\Dbtomigration;
 
 use \Symfony\Component\Console\Output\ConsoleOutput;
 
@@ -129,7 +129,7 @@ class GenerateMigrationFiles
 		
 		if ($column->COLUMN_TYPE == 'tinyint')
 			$type = 'tinyInteger';
-		
+
 		if ($column->COLUMN_TYPE == 'timestamp')
 			$type = 'timestamp';
 		

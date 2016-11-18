@@ -1,26 +1,26 @@
 <?php
 
-namespace Shakogegia\Laramigrations\Commands;
+namespace Shakogegia\Dbtomigration\Commands;
 
 use Illuminate\Console\Command;
 
-use Shakogegia\Laramigrations\GenerateMigrationFiles;
+use Shakogegia\Dbtomigration\GenerateMigrationFiles;
 
-class SqlToMigrationCommand extends Command
+class DbToMigrationCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'sqltomigration:generate';
+    protected $signature = 'dbtomigration:generate';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Generate migration files from sql';
+    protected $description = 'Generate migration files from database';
 
     /**
      * Create a new command instance.
