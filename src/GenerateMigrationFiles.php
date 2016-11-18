@@ -56,11 +56,11 @@ class GenerateMigrationFiles
       
         $this->columns = $columns;
 
-        $this->dbSchema();
+        $this->fetchDbSchema();
     }
 
 
-    public function dbSchema()
+    public function fetchDbSchema()
     {
 	 	foreach ($this->columns as $value) {
 	 		if (!isset($this->dbSchema[ $value->TABLE_NAME ])){
@@ -77,12 +77,10 @@ class GenerateMigrationFiles
     {
     	$sample = file_get_contents(__DIR__ .'/migration');
 
-    	// echo "<pre>";
-    	// print_r($this->dbSchema);
-    	// echo "</pre>";
-    	// exit;
 
     	foreach ($this->dbSchema as $table => $columns) {
+
+	        $this->showInfo("Generating migration for: {$table}");
 
     		$classStr = str_replace("{class_name}", "Create".ucfirst($table)."Table", $sample);
     		
@@ -94,6 +92,8 @@ class GenerateMigrationFiles
 
 	    	$this->saveFile($migrationStr, $table);
     	}
+
+        $this->showInfo("Finished!");
     }
 
     public function generateColumns($columns=[])
