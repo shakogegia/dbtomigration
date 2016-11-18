@@ -1,5 +1,5 @@
 # laramigrations
-Laravel 5.3 package to generate migration files from database
+Laravel 5.3 package to convert database to laravel migartions
 
 ## Install
 ```
