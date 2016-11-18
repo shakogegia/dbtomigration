@@ -12,6 +12,23 @@ class GenerateMigrationFiles
 	private $columns = [];
 
 	private $dbSchema = array();
+	
+	private $types = [
+		'int' => 'integer',
+		'smallint' => 'smallInteger',
+		'mediumint' => 'mediumInteger',
+		'bigint' => 'bigInteger',
+		'tinyint' => 'tinyInteger',
+		'varchar' => 'string',
+		'text' => 'text',
+		'smalltext' => 'smallText',
+		'mediumtext' => 'mediumText',
+		'longtext' => 'longText',
+		'datetime' => 'dateTime',
+		'date' => 'date',
+		'time' => 'time',
+		'timestamp' => 'timestamp',
+	];
 
 	public function __construct()
 	{
@@ -35,7 +52,7 @@ class GenerateMigrationFiles
     {
     	$dbname = env('DB_DATABASE');
 	 	
-	 	$columns = DB::select('SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = ? ', [$dbname]);
+	 	$columns = DB::select('SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = ? ORDER BY TABLE_NAME, ORDINAL_POSITION ', [$dbname]);
       
         $this->columns = $columns;
 
@@ -60,10 +77,10 @@ class GenerateMigrationFiles
     {
     	$sample = file_get_contents(__DIR__ .'/migration');
 
-    	/*echo "<pre>";
-    	print_r($this->dbSchema);
-    	echo "</pre>";
-    	exit;*/
+    	// echo "<pre>";
+    	// print_r($this->dbSchema);
+    	// echo "</pre>";
+    	// exit;
 
     	foreach ($this->dbSchema as $table => $columns) {
 
@@ -103,26 +120,55 @@ class GenerateMigrationFiles
 
 		$type = 'string';
 
-		if ($column->COLUMN_KEY == 'PRI')
+		if ($column->COLUMN_KEY == 'PRI'){
 			$type = 'increments';
-
-		if ($column->COLUMN_TYPE == 'datetime')
-			$type = 'dateTime';
-
-		if ($column->COLUMN_TYPE == 'text')
-			$type = 'text';
-		
-		if ($column->COLUMN_TYPE == 'tinyint')
-			$type = 'tinyInteger';
-
-		if ($column->COLUMN_TYPE == 'timestamp')
-			$type = 'timestamp';
+		} else if(isset($this->types[$column->DATA_TYPE])) {
+			$type = $this->types[$column->DATA_TYPE];
+		}
 		
 		$str .= $type;
 
-		$str .= "('{$column->COLUMN_NAME}');\n";
+		$param = $this->columnParam($column, $type);
+		$default = $this->columnDefault($column, $type);
+		$comment = $this->columnComment($column, $type);
+
+		$str .= "('{$column->COLUMN_NAME}'{$param}){$default}{$comment};\n";
 		
 		return $str;
+    }
+
+    public function columnParam($column, $type)
+    {
+    	$str = '';
+
+    	if ($column->DATA_TYPE == 'varchar') {
+    		$str = " , {$column->CHARACTER_MAXIMUM_LENGTH}";
+    	}
+    	
+    	return $str;
+    }
+
+    public function columnDefault($column, $type)
+    {
+    	$str = '';
+
+    	if ( isset($column->COLUMN_DEFAULT) ) {
+    		$quote = !is_numeric($column->COLUMN_DEFAULT) ? "'" : '';
+    		$str = "->default({$quote}{$column->COLUMN_DEFAULT}{$quote})";
+    	}
+    	
+    	return $str;
+    }
+
+    public function columnComment($column, $type)
+    {
+    	$str = '';
+
+    	if ( isset($column->COLUMN_COMMENT) && !empty($column->COLUMN_COMMENT) ) {
+    		$str = "->comment('{$column->COLUMN_COMMENT}')";
+    	}
+    	
+    	return $str;
     }
 
     public function saveFile($migrationStr='', $table)
