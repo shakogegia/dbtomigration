@@ -1,6 +1,6 @@
 {
     "name": "shakogegia/laramigrations",
-    "description": "sql to migrations",
+    "description": "Laravel 5.3 package to generate migration files from sql",
     "authors": [
         {
             "name": "Shalva gegia",
@@ -8,6 +8,6 @@
         }
     ],
     "license": "MIT",
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "require": {}
 }
