@@ -16,3 +16,6 @@ Run artisan command to generate migration files
 ```
 php artisan dbtomigration:generate
 ```
+
+# Contributing
+contributions are more than welcome!
